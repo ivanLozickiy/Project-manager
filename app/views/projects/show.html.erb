@@ -19,6 +19,6 @@
   <strong>End date:</strong>
   <%= @project.end_date %>
 </p>
-
+<%= link_to 'Tasks', project_tasks_path(@project) %>
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

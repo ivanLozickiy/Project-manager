@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'user/registrations', sessions: 'user/sessions'}
   resources :projects do
-  	resources :tasks do
-  		resources :users
-  	end
+  	resources :tasks 
   end
+  resources :users
   devise_scope :user do
   	root 'devise/sessions#new'
   end

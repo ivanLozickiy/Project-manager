@@ -31,7 +31,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     project = Project.find(params[:project_id])
-    @task = project.tasks.create(params[:task])
+    @task = project.tasks.create(task_params)
 
     respond_to do |format|
       if @task.save

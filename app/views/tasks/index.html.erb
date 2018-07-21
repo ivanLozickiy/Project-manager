@@ -17,13 +17,23 @@
     <% unless @tasks.nil? %>
       <% @tasks.each do |task| %>
         <tr>
-          <td><%= task.title %></td>
-          <td><%= task.description %></td>
-          <td><%= task.status %></td>
-          <td><%= task.users.map{ |u| u.full_name }.join(', ') %></td>
-          <td><%= link_to 'Show', [task.project, task] %></td>
-          <td><%= link_to 'Edit', edit_project_task_path(task.project, task) %></td>
-          <td><%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if current_user.admin? %>
+            <td><%= task.title %></td>
+            <td><%= task.description %></td>
+            <td><%= task.status %></td>
+            <td><%= task.users.map{ |u| u.full_name }.join(', ') %></td>
+            <td><%= link_to 'Show', [task.project, task] %></td>
+            <td><%= link_to 'Edit', edit_project_task_path(task.project, task) %></td>
+            <td><%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <% if task.user_ids.include?(current_user.id) %>
+              <td><%= task.title %></td>
+              <td><%= task.description %></td>
+              <td><%= task.status %></td>
+              <td><%= task.users.map{ |u| u.full_name }.join(', ') %></td>
+              <td><%= link_to 'Show', [task.project, task] %></td>
+            <% end %>
+          <% end %>          
         </tr>
       <% end %>
     <% end %>    

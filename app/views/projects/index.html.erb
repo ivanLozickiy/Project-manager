@@ -13,18 +13,30 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%= project.summary %></td>
-        <td><%= project.start_date %></td>
-        <td><%= project.end_date %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody>    
+    <% if current_user.admin? %>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= project.name %></td>
+          <td><%= project.summary %></td>
+          <td><%= project.start_date %></td>
+          <td><%= project.end_date %></td>
+          <td><%= link_to 'Show', project %></td>
+          <td><%= link_to 'Edit', edit_project_path(project) %></td>
+          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    <% else %>
+        <% current_user.task.each do |task| %>
+          <tr>
+            <td><%= task.project.name %></td>
+            <td><%= task.project.summary %></td>
+            <td><%= task.project.start_date %></td>
+            <td><%= task.project.end_date %></td>
+            <td><%= link_to 'Show', task.project %></td>
+          </tr>          
+        <% end %>          
+      <% end %> 
   </tbody>
 </table>
 

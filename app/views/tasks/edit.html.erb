@@ -1,7 +1,7 @@
 <h1>Editing Task</h1>
 
 <%= render 'form', task: @task %>
-<div style="float:right">
+<div class="btn" style="float:left">
 	<%= button_to 'Back', project_tasks_path(@task.project), :method => :get %>
 </div>
 

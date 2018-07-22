@@ -2,11 +2,10 @@
 
 <h1>Projects</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Summary</th>
       <th>Start date</th>
       <th>End date</th>
       <th colspan="3"></th>
@@ -17,23 +16,19 @@
     <% if current_user.admin? %>
       <% @projects.each do |project| %>
         <tr>
-          <td><%= project.name %></td>
-          <td><%= project.summary %></td>
+          <td><%= link_to project.name, project_tasks_path(project) %></td>
           <td><%= project.start_date %></td>
           <td><%= project.end_date %></td>
-          <td><%= link_to 'Show', project %></td>
-          <td><%= link_to 'Edit', edit_project_path(project) %></td>
-          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="btn"><%= button_to 'Edit', edit_project_path(project), method: :get %></td>
+          <td class="btn"><%= button_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     <% else %>
         <% current_user.task.each do |task| %>
           <tr>
-            <td><%= task.project.name %></td>
-            <td><%= task.project.summary %></td>
+            <td><%= link_to task.project.name, project_tasks_path(task.project) %></td>
             <td><%= task.project.start_date %></td>
             <td><%= task.project.end_date %></td>
-            <td><%= link_to 'Show', task.project %></td>
           </tr>          
         <% end %>          
       <% end %> 
@@ -41,7 +36,8 @@
 </table>
 
 <br>
-<% if current_user.admin? %>
-  <%= link_to 'New Project', new_project_path %><br>
-<% end %>
-<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+<div class="btn">
+  <% if current_user.admin? %>
+    <%= button_to 'New Project', new_project_path, method: :get %><br>
+  <% end %>
+</div>

@@ -19,6 +19,12 @@
   <strong>End date:</strong>
   <%= @project.end_date %>
 </p>
-<%= link_to 'Tasks', project_tasks_path(@project) %>
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+
+<div>
+	<div class="btn" style="float:left">
+		<%= button_to 'Edit', edit_project_path(@project), method: :get %>
+	</div>
+	<div class="btn" style="float:left">
+		<%= button_to 'Back', projects_path, method: :get %>
+	</div>
+</div>

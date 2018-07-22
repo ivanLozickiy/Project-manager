@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @task.description %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @task.status %>
-</p>
-
-<p>
   <strong>Project:</strong>
   <%= @task.project.name %>
 </p>
 
-<%= link_to 'Edit', edit_project_task_path(@task.project, @task) %> |
-<%= link_to 'Back', project_tasks_path(@task.project) %>
+<h2>
+  <%= @task.title %>
+</h2>
+
+<p>
+  <strong>Description:</strong><br>
+  <%= @task.description %>
+</p>
+
+<div class="btn" style="float:left">
+  <% if current_user.admin? %>    
+	 <%= button_to 'Edit', edit_project_task_path(@task.project, @task), method: :get %>
+  <% end %>
+</div>
+<div class="btn" style="float:left">
+	<%= button_to 'Back', project_tasks_path(@task.project), method: :get %>
+</div>

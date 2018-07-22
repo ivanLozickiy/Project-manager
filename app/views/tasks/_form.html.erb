@@ -23,11 +23,9 @@
 
   <div class="dropdown">
     <%= form.label :users %>
-    <ul class="dropdown-menu">
       <%= form.collection_check_boxes( :user_ids, User.all, :id, :full_name) do |b|%>
           <li><%= b.label { b.check_box + b.text } %></li>      
-      <% end %>
-    </ul>    
+      <% end %>  
   </div>
 
   <div class="field">
@@ -35,7 +33,7 @@
     <%= form.text_field :status %>
   </div>
 
-  <div class="actions">
+  <div class="actions btn" style="float:left">
     <%= form.submit %>
   </div>
 <% end %>

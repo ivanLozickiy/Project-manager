@@ -14,24 +14,23 @@
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
-  </div>
+  </div><br>
 
   <div class="field">
     <%= form.label :description %>
     <%= form.text_field :description %>
-  </div>
+  </div><br>
 
-  <div class="dropdown">
-    <%= form.label :users %>
+  <div class="dropdown" style="margin-left: 120px">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Set users
+      <span class="caret"></span></button>
+    <ul class="dropdown-menu">      
       <%= form.collection_check_boxes( :user_ids, User.all, :id, :full_name) do |b|%>
-          <li><%= b.label { b.check_box + b.text } %></li>      
+        <li><%= b.label { b.check_box + b.text } %></li>
+        <li class="divider"></li>      
       <% end %>  
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
+    </ul>
+  </div><br>
 
   <div class="actions btn" style="float:left">
     <%= form.submit %>

@@ -19,6 +19,7 @@ class TasksController < ApplicationController
   def new
     project = Project.find(params[:project_id])
     @task = project.tasks.build
+    @task.status = 'new'
   end
 
   # GET /tasks/1/edit
@@ -32,7 +33,7 @@ class TasksController < ApplicationController
   def create
     project = Project.find(params[:project_id])
     @task = project.tasks.create(task_params)
-
+    @task.status = 'new'
     respond_to do |format|
       if @task.save
         format.html { redirect_to [@task.project, @task], notice: 'Task was successfully created.' }
@@ -70,6 +71,17 @@ class TasksController < ApplicationController
       format.html { redirect_to project_tasks_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def change_status
+    task = Task.find(params[:id])
+    case task.status
+    when "new"
+      task.status = 'in progress'
+    when "in progress"
+      task.status = 'done'
+    end
+    task.save
   end
 
   private

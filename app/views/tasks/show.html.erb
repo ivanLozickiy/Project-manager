@@ -1,16 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h3>
   <strong>Project:</strong>
   <%= @task.project.name %>
-</p>
+</h3>
 
 <h2>
+	<strong>Task: </strong>
   <%= @task.title %>
 </h2>
-
-<p>
-  <strong>Description:</strong><br>
+<strong>Description:</strong><br>
+<p class="center jumbotron">  
   <%= @task.description %>
 </p>
 
@@ -21,4 +21,9 @@
 </div>
 <div class="btn" style="float:left">
 	<%= button_to 'Back', project_tasks_path(@task.project), method: :get %>
+</div>
+<div class="btn" style="float:left">
+	<%= form_tag controller: 'tasks', action: 'change_status', id: @task, method: :get do %>
+		<%= submit_tag "Change status" %>
+	<% end %> 
 </div>

@@ -42,5 +42,13 @@
 
 <br>
 
-<%= link_to 'New Task', new_project_task_path %>
-<%= link_to 'Back', projects_path %>
+<div>
+  <div style="float:left">
+    <% if current_user.admin? %>
+      <%= button_to 'New Task', new_project_task_path, :method => :get %>
+    <% end %>    
+  </div>
+  <div style="float:right">    
+    <%= button_to 'Back', projects_path, :method => :get %>
+  </div> 
+</div>

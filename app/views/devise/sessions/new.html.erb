@@ -1,4 +1,4 @@
-<div class="jumbotron">  
+<div class="center jumbotron">  
   <h2>Log in</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -19,7 +19,7 @@
       </div>
     <% end -%>
 
-    <div class="actions btn" style="float:left">
+    <div class="actions btn">
       <%= f.submit "Log in" %>
     </div>
   <% end %>

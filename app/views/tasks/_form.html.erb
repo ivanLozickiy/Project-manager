@@ -2,23 +2,26 @@
   <% if task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
       <ul>
-      <% task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <div class="label-st">      
+      <%= form.label :title %>
+    </div>
     <%= form.text_field :title %>
   </div><br>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+    <div class="label-st">      
+      <%= form.label :description %>
+    </div>    
+    <%= form.text_area :description, size: "60x5" %>
   </div><br>
 
   <div class="dropdown" style="margin-left: 120px">
